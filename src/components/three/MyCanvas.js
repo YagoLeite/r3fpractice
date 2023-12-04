@@ -14,6 +14,7 @@ import Sole from "../section/Sole";
 import Eco from "../section/Eco";
 import ScrollManager from "../scroll/ScrollManager";
 import MyCamera from "./MyCamera";
+import Hero from "../section/Hero";
 
 const MyCanvas = () => {
   const [section, setSection] = useState(1);
@@ -21,7 +22,12 @@ const MyCanvas = () => {
   return (
     <>
       <Canvas
-        style={{ height: "100vh", width: "100%", backgroundColor: "white" }}
+        style={{
+          height: "100vh",
+          width: "100%",
+          backgroundColor: "black",
+          color: "white",
+        }}
         shadows
       >
         <ScrollControls pages={5} damping={0.1}>
@@ -30,7 +36,7 @@ const MyCanvas = () => {
           <MyCamera />
           <ShoeModel />
           <ambientLight intensity={3} />
-          <ContactShadows position={[0, -1.2, 0]} color="#ffffff" />
+          <ContactShadows position={[0, -0.8, 0]} color="#ffffff" />
           <OrbitControls enableZoom={false} />
           <Scroll
             html
@@ -41,7 +47,9 @@ const MyCanvas = () => {
               flexDirection: "column",
             }}
           >
-            <Section id="1">1</Section>
+            <Section id="1">
+              <Hero />
+            </Section>
             <Section id="2">
               <Laces setSection={setSection} />
             </Section>
