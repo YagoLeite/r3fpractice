@@ -30,61 +30,45 @@ export function ShoeModel(props) {
   const groupRef = useRef(null);
   const scroll = useScroll();
 
-  //   useControls("Shoe", () => {
-  //     return Object.keys(materials).reduce(
-  //       (acc, m) =>
-  //         Object.assign(acc, {
-  //           [m]: {
-  //             value:
-  //               "#" +
-  //               ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0"),
-  //             onChange: (v) => {
-  //               materials[m].color = new Color(v);
-  //             },
-  //           },
-  //         }),
-  //       {}
-  //     );
-  //   });
 
-  //   useFrame((_state, delta) => {
-  //       const offset = scroll.offset;
-  //       const group = groupRef.current;
 
-  //       if (group) {
-  //         let targetX, targetY, targetZ;
+    useFrame((_state, delta) => {
+      const offset = scroll.offset;
+      const group = groupRef.current;
 
-  //         if (offset < 0.25) {
-  //           // Rotations for viewing from the top
-  //           targetX = (Math.PI / 4) * Math.min(offset / 0.25, 1);
-  //           targetY = (-Math.PI / 2) * Math.min(offset / 0.25, 1);
-  //           targetZ = 0; // No Z rotation initially
-  //         } else if (offset < 0.5) {
-  //           // Transition to a position where the bottom is primarily visible
-  //           const relativeOffset = (offset - 0.25) / 0.25;
-  //           targetX = MathUtils.lerp(Math.PI / 4, 0, relativeOffset);
-  //           targetY = MathUtils.lerp(-Math.PI / 2, Math.PI / 4, relativeOffset);
-  //           targetZ = MathUtils.lerp(0, -Math.PI / 8, relativeOffset); // Adding a slight Z rotation
-  //         } else if (offset < 0.65) {
-  //           // Maintain the final position for offsets beyond 0.5 and less than 0.65
-  //           targetX = 0;
-  //           targetY = Math.PI / 4;
-  //           targetZ = -Math.PI / 8; // Final Z rotation
-  //         } else {
-  //           // Rotate back to the position like at 0.25 for offsets beyond 0.65
-  //           const relativeOffset = (offset - 0.65) / (1 - 0.65);
-  //           targetX = MathUtils.lerp(0, Math.PI / 4, relativeOffset);
-  //           targetY = MathUtils.lerp(Math.PI / 4, -Math.PI / 2, relativeOffset);
-  //           targetZ = MathUtils.lerp(-Math.PI / 8, 0, relativeOffset);
-  //         }
+      if (group) {
+        let targetX, targetY, targetZ;
 
-  //         // Lerp the rotation for a smooth transition
-  //         group.rotation.x = MathUtils.lerp(group.rotation.x, targetX, 0.05);
-  //         group.rotation.y = MathUtils.lerp(group.rotation.y, targetY, 0.05);
-  //         group.rotation.z = MathUtils.lerp(group.rotation.z, targetZ, 0.05);
-  //       }
+        if (offset < 0.25) {
+          // Rotations for viewing from the top
+          targetX = (Math.PI / 4) * Math.min(offset / 0.25, 1);
+          targetY = (-Math.PI / 2) * Math.min(offset / 0.25, 1);
+          targetZ = 0; // No Z rotation initially
+        } else if (offset < 0.5) {
+          // Transition to a position where the bottom is primarily visible
+          const relativeOffset = (offset - 0.25) / 0.25;
+          targetX = MathUtils.lerp(Math.PI / 4, 0, relativeOffset);
+          targetY = MathUtils.lerp(-Math.PI / 2, Math.PI / 4, relativeOffset);
+          targetZ = MathUtils.lerp(0, -Math.PI / 8, relativeOffset); // Adding a slight Z rotation
+        } else if (offset < 0.65) {
+          // Maintain the final position for offsets beyond 0.5 and less than 0.65
+          targetX = 0;
+          targetY = Math.PI / 4;
+          targetZ = -Math.PI / 8; // Final Z rotation
+        } else {
+          // Rotate back to the position like at 0.25 for offsets beyond 0.65
+          const relativeOffset = (offset - 0.65) / (1 - 0.65);
+          targetX = MathUtils.lerp(0, Math.PI / 4, relativeOffset);
+          targetY = MathUtils.lerp(Math.PI / 4, -Math.PI / 2, relativeOffset);
+          targetZ = MathUtils.lerp(-Math.PI / 8, 0, relativeOffset);
+        }
 
-  //   });
+        // Lerp the rotation for a smooth transition
+        group.rotation.x = MathUtils.lerp(group.rotation.x, targetX, 0.05);
+        group.rotation.y = MathUtils.lerp(group.rotation.y, targetY, 0.05);
+        group.rotation.z = MathUtils.lerp(group.rotation.z, targetZ, 0.05);
+      }
+    });
 
   return (
     <motion.group
