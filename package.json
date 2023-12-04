@@ -9,8 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/next-js": "^2.2.0",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@react-three/drei": "^9.89.0",
+    "@react-three/fiber": "^8.15.11",
+    "@types/three": "^0.159.0",
+    "framer-motion": "^10.16.12",
+    "framer-motion-3d": "^10.16.12",
+    "leva": "^0.9.35",
+    "next": "14.0.3",
     "react": "^18",
+    "react-colorful": "^5.6.1",
     "react-dom": "^18",
-    "next": "14.0.3"
+    "three": "^0.159.0",
+    "valtio": "^1.12.1"
   }
 }
